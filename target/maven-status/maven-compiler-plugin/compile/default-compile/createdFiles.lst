@@ -1,0 +1,9 @@
+com\quantconsult\performanceReview\repository\PerformanceRepository.class
+com\quantconsult\performanceReview\controller\PerformanceController.class
+com\quantconsult\performanceReview\PerformanceMonitorApplication.class
+com\quantconsult\performanceReview\model\AssetPerformance.class
+com\quantconsult\performanceReview\model\StrategyPerformances.class
+com\quantconsult\performanceReview\model\AssetPerformance$Currency.class
+com\quantconsult\performanceReview\model\StrategyPerformance.class
+com\quantconsult\performanceReview\controller\HelloController.class
+com\quantconsult\performanceReview\GenerateRandomData.class

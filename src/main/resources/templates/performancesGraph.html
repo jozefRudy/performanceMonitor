@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="/webjars/d3js/d3.min.js"></script>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/nvd3/nv.d3.min.js"></script>
+    <link rel="stylesheet"
+          href="/webjars/nvd3/nv.d3.min.css" />
+    <title th:text="${shit}">Placeholder</title>
+
+    <script th:inline="javascript">
+    function testData1() {
+        return JSON.parse(/*[[${performances_string}]]*/);
+    }
+</script>
+<script th:src="@{/js/timeseries.js}"></script>
+</head>
+<body>
+
+<div id="chart">
+    <svg></svg>
+</div>
+</body>
+
+<style>
+
+        #chart svg {
+          height: 600px;
+        }
+
+        </style>
+</html>
