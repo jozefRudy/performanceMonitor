@@ -6,13 +6,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name="assetPerformance")
+@IdClass(AssetPerformanceId.class)
 public class AssetPerformance implements Serializable {
 
     public enum Currency {
@@ -30,28 +30,22 @@ public class AssetPerformance implements Serializable {
         this.currency = currency;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
+    @Id @Temporal(TemporalType.TIMESTAMP) @NotNull
     private Date date;
 
-    @Column(name = "strategy_name")
-    @NotBlank
+    @Id @NotBlank
     private String strategyName;
 
-    @Column(name = "asset_name")
-    @NotBlank
+    @Id @NotBlank
     private String assetName;
 
-    @Column(name= "conId")
+    @Id
     private int conId;
 
-    @Column(name = "pnl")
+    @Column(columnDefinition = "smallint") @NonNull @Enumerated
+    private  Currency currency;
+
     private double pnl;
 
-    @Column(name = "currency")
-    private @NonNull Currency currency;
+
 }
