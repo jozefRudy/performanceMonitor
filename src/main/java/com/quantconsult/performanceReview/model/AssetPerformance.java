@@ -1,11 +1,14 @@
 package com.quantconsult.performanceReview.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Data
@@ -21,7 +24,7 @@ public class AssetPerformance implements Serializable {
         JPY
     }
 
-    public AssetPerformance(Date date, String strategyName, String assetName, int conId, double pnl, Currency currency) {
+    public AssetPerformance(ZonedDateTime date, String strategyName, String assetName, int conId, double pnl, Currency currency) {
         this.date = date;
         this.strategyName = strategyName;
         this.assetName = assetName;
@@ -30,8 +33,10 @@ public class AssetPerformance implements Serializable {
         this.currency = currency;
     }
 
-    @Id @Temporal(TemporalType.TIMESTAMP) @NotNull
-    private Date date;
+    @Id @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS z")
+    @Column(columnDefinition= "TIMESTAMP WITH TIME ZONE")
+    private ZonedDateTime date;
 
     @Id @NotBlank
     private String strategyName;
@@ -42,7 +47,7 @@ public class AssetPerformance implements Serializable {
     @Id
     private int conId;
 
-    @Column(columnDefinition = "smallint") @NonNull @Enumerated
+    @Column(columnDefinition = "INT") @NonNull @Enumerated
     private  Currency currency;
 
     private double pnl;

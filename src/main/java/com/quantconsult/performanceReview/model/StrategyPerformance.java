@@ -11,6 +11,7 @@ import org.springframework.lang.NonNullApi;
 import com.google.gson.annotations.SerializedName;
 
 
+import java.time.ZonedDateTime;
 import java.util.*;
 
 @Value public class StrategyPerformance {
@@ -21,14 +22,14 @@ import java.util.*;
         this.pnl = assetPerformance.getPnl();
     }
 
-    public StrategyPerformance(Date date, String strategyName, double pnl) {
+    public StrategyPerformance(ZonedDateTime date, String strategyName, double pnl) {
         this.date = date;
         this.strategyName = strategyName;
         this.pnl = pnl;
     }
 
     @SerializedName("x")
-    Date date;
+    ZonedDateTime date;
 
     transient String strategyName;
 
@@ -55,7 +56,7 @@ import java.util.*;
 
     public static String toJson(HashMap<String, List<StrategyPerformance>> performancesPerStrategy) {
         Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Date.class, new DateSerializer())
+                .registerTypeAdapter(ZonedDateTime.class, new DateSerializer())
                 .disableHtmlEscaping()
                 .create();
 

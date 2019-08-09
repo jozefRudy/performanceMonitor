@@ -5,6 +5,7 @@ import com.quantconsult.performanceReview.model.StrategyPerformance;
 import com.quantconsult.performanceReview.repository.PerformanceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,13 @@ public class PerformanceController {
   @PostMapping("/addAssetPerformance")
   public AssetPerformance addAssetPerformance(@RequestBody @Valid AssetPerformance assetPerformance) {
     return repository.save(assetPerformance);
+  }
+
+  @PostMapping("/addAssetPerformances")
+  public void addAssetPerformances(@RequestBody @Valid AssetPerformance[] assetPerformances) {
+    for (AssetPerformance assetPerformance: assetPerformances) {
+      repository.save(assetPerformance);
+    }
   }
 
 

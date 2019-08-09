@@ -5,6 +5,7 @@ import java.lang.reflect.Type;
 import java.time.Instant;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -14,11 +15,11 @@ import com.google.gson.stream.JsonWriter;
 
 import javax.persistence.criteria.CriteriaBuilder;
 
-public class DateSerializer extends TypeAdapter<Date> {
+public class DateSerializer extends TypeAdapter<ZonedDateTime> {
 
     @Override
-    public void write(JsonWriter out, Date value) throws IOException {
-        if(value != null) out.value(value.getTime());
+    public void write(JsonWriter out, ZonedDateTime value) throws IOException {
+        if(value != null) out.value(value.toInstant().toEpochMilli());
         else out.nullValue();
     }
 
@@ -30,8 +31,8 @@ public class DateSerializer extends TypeAdapter<Date> {
     }*/
 
     @Override
-    public Date read(JsonReader in) throws IOException {
-        return new Date(in.nextLong());
+    public ZonedDateTime read(JsonReader in) throws IOException {
+        return ZonedDateTime.ofInstant(Instant.ofEpochMilli(in.nextLong()), ZoneId.of("America/Chicago"));
     }
 
 }

@@ -4,19 +4,25 @@ import com.quantconsult.performanceReview.model.AssetPerformance;
 import com.quantconsult.performanceReview.repository.PerformanceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.math3.random.RandomDataGenerator;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Configuration
 @Slf4j
+@Profile({"dev"})
 public class GenerateRandomData {
 
   @Autowired private PerformanceRepository performanceRepository;
@@ -35,8 +41,8 @@ public class GenerateRandomData {
         x -> {
           for (String strategy : strategies) {
             assetPerformances.add(
-                new AssetPerformance(
-                    Date.valueOf(x),
+                    new AssetPerformance(
+                    ZonedDateTime.of(x, LocalTime.of(16, 0), ZoneId.of("America/Chicago")),
                     strategy,
                     "AAPL",
                     1,
