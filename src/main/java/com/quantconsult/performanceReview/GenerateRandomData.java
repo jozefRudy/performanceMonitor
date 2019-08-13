@@ -4,14 +4,12 @@ import com.quantconsult.performanceReview.model.AssetPerformance;
 import com.quantconsult.performanceReview.repository.PerformanceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.math3.random.RandomDataGenerator;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -47,7 +45,8 @@ public class GenerateRandomData {
                     "AAPL",
                     1,
                     generator.nextUniform(-100, 100),
-                    AssetPerformance.Currency.USD));
+                    AssetPerformance.Currency.USD,
+                            1000d, 1));
           }
         });
     return args -> {

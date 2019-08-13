@@ -24,12 +24,14 @@ public class AssetPerformance implements Serializable {
         JPY
     }
 
-    public AssetPerformance(ZonedDateTime date, String strategyName, String assetName, int conId, double pnl, Currency currency) {
+    public AssetPerformance(ZonedDateTime date, String strategyName, String assetName, int conId, double pnl, Currency currency, double price, int quantity) {
         this.date = date;
         this.strategyName = strategyName;
         this.assetName = assetName;
         this.conId = conId;
         this.pnl = pnl;
+        this.price = price;
+        this.quantity = quantity;
         this.currency = currency;
     }
 
@@ -51,6 +53,6 @@ public class AssetPerformance implements Serializable {
     private  Currency currency;
 
     private double pnl;
-
-
+    private double price;
+    private int quantity;
 }
