@@ -9,6 +9,8 @@
     chart.xAxis
         .tickFormat(function(d) { return d3.time.format('%H:%M:%S')(new Date(d)); })
 
+    chart.xScale(d3.time.scale());
+
     chart.yAxis
         .tickFormat(d3.format(',.2f'));
 
