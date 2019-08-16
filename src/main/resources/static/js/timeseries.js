@@ -1,13 +1,13 @@
   nv.addGraph(function() {
     var chart = nv.models.lineWithFocusChart()
-    .useInteractiveGuideline(true)
-    .clipEdge(true);
-
-    chart.xAxis
-        .tickFormat(function(d) { return d3.time.format('%Y-%m-%d')(new Date(d)); })
+    .useInteractiveGuideline(false)
+    .clipEdge(false);
 
     chart.x2Axis
         .tickFormat(function(d) { return d3.time.format('%Y-%m-%d')(new Date(d)); })
+
+    chart.xAxis
+        .tickFormat(function(d) { return d3.time.format('%H:%M:%S')(new Date(d)); })
 
     chart.yAxis
         .tickFormat(d3.format(',.2f'));

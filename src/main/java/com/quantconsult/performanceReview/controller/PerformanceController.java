@@ -16,8 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -52,7 +55,7 @@ public class PerformanceController {
   @ResponseBody
   public String strategyPerformanceModel() {
     List<String> strategyNames = repository.findDistinctStrategyNames();
-    HashMap<String, List<StrategyPerformance>> performancesPerStrategy = new HashMap<>();
+    TreeMap<String, List<StrategyPerformance>> performancesPerStrategy = new TreeMap<>();
 
     for (String strategyName : strategyNames) {
       List<AssetPerformance> assetPerformances = repository.findByStrategyNameOrderByDateAsc(strategyName);

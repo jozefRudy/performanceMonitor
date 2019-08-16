@@ -54,7 +54,7 @@ import java.util.*;
         return strategyPerformancesCumPnl;
     }
 
-    public static String toJson(HashMap<String, List<StrategyPerformance>> performancesPerStrategy) {
+    public static String toJson(TreeMap<String, List<StrategyPerformance>> performancesPerStrategy) {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(ZonedDateTime.class, new DateSerializer())
                 .disableHtmlEscaping()
