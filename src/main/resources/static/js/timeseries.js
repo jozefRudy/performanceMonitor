@@ -7,7 +7,7 @@
         .tickFormat(function(d) { return d3.time.format('%Y-%m-%d')(new Date(d)); })
 
     chart.xAxis
-        .tickFormat(function(d) { return d3.time.format('%H:%M:%S')(new Date(d)); })
+        .tickFormat(function(d) { return d3.time.format('%m-%d %H%M')(new Date(d)); })
 
     chart.xScale(d3.time.scale());
 
